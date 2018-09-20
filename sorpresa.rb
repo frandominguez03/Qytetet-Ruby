@@ -14,6 +14,6 @@ class Sorpresa
   attr_reader :valor
   
   def to_s
-    "Texto: #{@texto} \n Valor: #{@valor} \n Tipo: #{@tipo}"
+    puts "Texto: #{@texto} \n Valor: #{@valor} \n Tipo: #{@tipo}"
   end
 end
