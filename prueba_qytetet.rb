@@ -2,44 +2,55 @@
 # author: Francisco Domínguez.
 
 require_relative "sorpresa"
+require_relative "qytetet"
 
 module ModeloQytetet
   class PruebaQytetet
-    @@juego = Qytetet.new()
+    @@juego = Qytetet.new
     
     def self.mayor_que_cero
-      @mayor_cero
-      for s in @@juego.mazo
-        if(mazo.valor > 0)
-          @mayor_cero.mazo = s
+      mayor_cero = Array.new
+      @@juego.mazo.each { |carta|
+        if carta.valor > 0
+          mayor_cero << carta
         end
-      end
+      }
+      return mayor_cero
     end
     
     def self.tipo_casilla
-      @tipo_casilla
-      for s in @@juego.mazo
-        if(mazo.tipo == :Ir_casilla)
-          @tipo_casilla.mazo = s
+      tipo_casilla = Array.new
+      @@juego.mazo.each { |carta|
+        if carta.tipo == TipoSorpresa::IRACASILLA
+          tipo_casilla << carta
         end
-      end
+      }
+      return tipo_casilla
     end
     
     def self.tipo_sorpresa(sorpresa)
-      @tipo_sorpresa
-      for s in TipoSorpresa::constants
-        if(mazo.tipo == sorpresa)
-          @tipo_sorpresa = s
+      tipo_sorpresa = Array.new
+      @@juego.mazo.each { |carta|
+        if carta.tipo == TipoSorpresa::const_get(sorpresa)
+          tipo_sorpresa << carta
         end
-      end
+      }
+      return tipo_sorpresa
     end
     
     def self.main
-      Qytetet.inicializarCartasSorpresa
+      @@juego.inicializar_cartas_sorpresa
       
-      puts mayor_que_cero
-      puts tipo_casilla
-      puts tipo_sorpresa
+      puts "Cartas con valor mayor a cero: "
+      puts mayor_que_cero << "\n"
+      
+      puts "Cartas del tipo ir a casilla: "
+      puts tipo_casilla << "\n"
+      
+      TipoSorpresa::constants.each { |const_get|
+        puts "Cartas del tipo #{const_get}: "
+        puts tipo_sorpresa(const_get)
+      }
     end
   end
   
