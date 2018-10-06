@@ -8,10 +8,12 @@ require_relative 'titulo_propiedad'
 require_relative 'casilla'
 require_relative 'tablero'
 require_relative 'qytetet'
+require_relative 'dado'
+require_relative 'jugador'
 
 module ModeloQytetet
   class PruebaQytetet
-    @@juego = Qytetet.new
+    @@juego = Qytetet.instance
     
     def self.mayor_que_cero
       mayor_cero = Array.new
@@ -43,10 +45,27 @@ module ModeloQytetet
       return tipo_sorpresa
     end
     
+    def self.get_nombre_jugadores
+      cadena = Array.new
+      i=0
+      
+      puts "Introduzca el numero de jugadores: "
+      num_jugadores = gets.chomp.to_i
+      
+      while i < num_jugadores
+        puts "Introduzca el nombre del jugador: "
+        cadena[i] = gets
+        i+=1
+      end
+      
+      return cadena
+    end
+    
     def self.main
       @@juego.inicializar_cartas_sorpresa
       tablero = Tablero.new
       
+      puts "Imprimimos los métodos de la clase"
       puts "Cartas con valor mayor a cero: "
       puts mayor_que_cero << "\n"
       
@@ -58,7 +77,14 @@ module ModeloQytetet
         puts tipo_sorpresa(const_get)
       }
       
-      puts tablero.to_s
+      puts "Imprimimos el tablero"
+      puts tablero.to_s << "\n"
+      
+      puts "Imprimimos los jugadores"
+      puts get_nombre_jugadores << "\n"
+      
+      puts "Impimimos la instancia Qytetet"
+      puts Qytetet.instance
     end
   end
   

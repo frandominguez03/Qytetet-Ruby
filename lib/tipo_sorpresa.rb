@@ -1,5 +1,5 @@
 # encoding: utf-8
-# author: Francisco Domínguez.
+# author: Francisco Domínguez
 
 module ModeloQytetet
   module TipoSorpresa

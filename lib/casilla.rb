@@ -5,13 +5,14 @@ module ModeloQytetet
   class Casilla
     
     def initialize(tipo, numCas, titulo)
-      @numCas = numCas
+      @numeroCasilla = numCas
       @tipo = tipo
+      @propietario = nil
       
       if titulo == nil
-        @precioCompra = 0
+        @coste = 0
       else
-        @precioCompra = titulo.precioC
+        @coste = titulo.precioC
         @titulo = titulo
       end
     end
@@ -20,15 +21,37 @@ module ModeloQytetet
       self.new(tipo, numCas, nil)
     end
     
-    attr_reader :numCas, :tipo, :precioCompra
+    attr_reader :numeroCasilla, :tipo, :coste, :titulo
     attr_accessor :titulo
     private :titulo=
     
+    protected
+    def asignar_propietario(jugador)
+      
+    end
+    
+    def pagar_alquiler
+      
+    end
+    
+    def propietario_encarcelado
+      
+    end
+    
+    def soy_edificable
+      
+    end
+    
+    def tengo_propietario
+      
+    end
+    
+    
     def to_s
       if @tipo == TipoCasilla::CALLE
-        "Casilla: numeroCasilla: #{@numCas} \n precioCompra: #{@precioCompra} \n tipo: #{@tipo} \n titulo: #{@titulo}"
+        "Casilla: numeroCasilla: #{@numeroCasilla} \n coste: #{@coste} \n tipo: #{@tipo} \n titulo: #{@titulo}"
       else
-        "Casilla: numeroCasilla: #{@numCas} \n precioCompra: #{@precioCompra} \n tipo: #{@tipo}"
+        "Casilla: numeroCasilla: #{@numeroCasilla} \n coste: #{@coste} \n tipo: #{@tipo}"
       end
     end
   end

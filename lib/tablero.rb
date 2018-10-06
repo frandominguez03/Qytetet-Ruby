@@ -8,10 +8,15 @@ module ModeloQytetet
       inicializar
     end
     
-    attr_reader :carcel, :casillas
-    
     def to_s
       "Tablero: \n Casillas: #{@casillas} \n Carcel: #{@carcel}"
+    end
+    
+    attr_reader :carcel, :casillas
+    
+    protected
+    def es_casilla_carcel(numeroCasilla)
+      
     end
     
     def inicializar
@@ -37,24 +42,32 @@ module ModeloQytetet
       @casillas << Casilla.new2(:SALIDA, 0)
       @casillas << Casilla.new(:CALLE, 1, titulos[contador])
       @casillas << Casilla.new2(:SORPRESA, 2)
-      @casillas << Casilla.new(:CALLE, 3, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 3, titulos[contador+=1])
       @casillas << Casilla.new2(:JUEZ, 4)
-      @casillas << Casilla.new(:CALLE, 5, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 5, titulos[contador+=1])
       @casillas << Casilla.new2(:PARKING, 6)
-      @casillas << Casilla.new(:CALLE, 7, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 7, titulos[contador+=1])
       @casillas << Casilla.new2(:SORPRESA, 8)
-      @casillas << Casilla.new(:CALLE, 9, titulos[contador+1])
-      @casillas << Casilla.new(:CALLE, 10, titulos[contador+1])
-      @casillas << Casilla.new(:CALLE, 11, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 9, titulos[contador+=1])
+      @casillas << Casilla.new(:CALLE, 10, titulos[contador+=1])
+      @casillas << Casilla.new(:CALLE, 11, titulos[contador+=1])
       @casillas << Casilla.new2(:IMPUESTO, 12)
-      @casillas << Casilla.new(:CALLE, 13, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 13, titulos[contador+=1])
       @casillas << Casilla.new2(:CARCEL, 14)
       @carcel = @casillas[14]
-      @casillas << Casilla.new(:CALLE, 15, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 15, titulos[contador+=1])
       @casillas << Casilla.new2(:SORPRESA, 16)
-      @casillas << Casilla.new(:CALLE, 17, titulos[contador+1])
-      @casillas << Casilla.new(:CALLE, 18, titulos[contador+1])
-      @casillas << Casilla.new(:CALLE, 19, titulos[contador+1])
+      @casillas << Casilla.new(:CALLE, 17, titulos[contador+=1])
+      @casillas << Casilla.new(:CALLE, 18, titulos[contador+=1])
+      @casillas << Casilla.new(:CALLE, 19, titulos[contador+=1])
+      
+    end
+    
+    def obtener_casilla_final(casilla, desplazamiento)
+      
+    end
+    
+    def obtener_casilla_numero(numeroCasilla)
       
     end
     
