@@ -94,9 +94,9 @@ module ModeloQytetet
     end
     
     def inicializar_jugadores(nombres)
-      for i in nombres.length
-        nombres[i] = Jugador.new
-      end
+      nombres.each { |nombre|
+        @jugadores << Jugador.new(nombre)
+      }
     end
     
     def inicializar_tablero
@@ -163,7 +163,6 @@ module ModeloQytetet
       
     end
     
-    private :encarcelar_jugador, :inicializar_jugadores,
-      :inicializar_tablero, :salida_jugadores
+    private :encarcelar_jugador, :salida_jugadores
   end
 end

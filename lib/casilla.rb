@@ -17,9 +17,15 @@ module ModeloQytetet
       end
     end
     
-    def self.new2(tipo, numCas)
-      self.new(tipo, numCas, nil)
+    def self.calle(numCas, titulo)
+      new(TipoCasilla::CALLE, numCas, titulo)
     end
+    
+    def self.casilla(tipo, numCas)
+      new(tipo, numCas, nil)
+    end
+    
+    private_class_method :new
     
     attr_reader :numeroCasilla, :tipo, :coste, :titulo
     attr_accessor :titulo

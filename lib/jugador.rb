@@ -102,6 +102,12 @@ module ModeloQytetet
       
     end
     
+    public
+    def to_s
+      "Jugador: #{@nombre} \n encarcelado: #{@encarcelado} \n propiedades: #{@propiedades} \n 
+      saldo: #{@saldo} \n casillaActual: #{@casillaActual}"
+    end
+    
     private :es_de_mi_propiedad, :eliminar_de_mis_propiedades, :tengo_saldo
   end
 end

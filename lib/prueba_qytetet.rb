@@ -62,7 +62,9 @@ module ModeloQytetet
     end
     
     def self.main
-      @@juego.inicializar_cartas_sorpresa
+      nombres = Array.new
+      nombres << get_nombre_jugadores
+      @@juego.inicializar_juego(nombres)
       tablero = Tablero.new
       
       puts "Imprimimos los métodos de la clase"
@@ -81,7 +83,7 @@ module ModeloQytetet
       puts tablero.to_s << "\n"
       
       puts "Imprimimos los jugadores"
-      puts get_nombre_jugadores << "\n"
+      puts @@juego.jugadores.to_s << "\n"
       
       puts "Impimimos la instancia Qytetet"
       puts Qytetet.instance
