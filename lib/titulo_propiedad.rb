@@ -18,8 +18,8 @@ module ModeloQytetet
       @propiedades = Array.new
     end
     
-    attr_reader :nombre, :precioC, :alquilerB, :factorB,
-      :hipotecaB, :precioE, :numHoteles, :numCasas
+    attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion,
+      :hipotecaBase, :precioEedificar, :numHoteles, :numCasas
     
     attr_accessor :hipotecada, :propietario
     
@@ -69,9 +69,7 @@ module ModeloQytetet
     end
     
     def to_s
-      "nombre: #{@nombre} \n precioCompra: #{@precioCompra} \n alquilerBase: #{@alquierBase} \n
-      factorRevalorización: #{@factorRevalorizacion} \n hipotecaBase: #{@hipotecaBase} \n precioEdificar: #{@precioEdificar} \n
-      hipotecada: #{@hipotecada} \n numHoteles: #{@numHoteles} \n numCasas: #{@numCasas}"
+      "\n nombre: #{@nombre} \n precioCompra: #{@precioCompra} \n alquilerBase: #{@alquierBase} \n factorRevalorización: #{@factorRevalorizacion} \n hipotecaBase: #{@hipotecaBase} \n precioEdificar: #{@precioEdificar} \n hipotecada: #{@hipotecada} \n numHoteles: #{@numHoteles} \n numCasas: #{@numCasas}"
     end
   end
 end

@@ -9,7 +9,7 @@ module ModeloQytetet
       @nombre = nombre
       @saldo = 7500
       @cartaLibertad = nil
-      @casillaActual = nil
+      @casillaActual = 0
       @propiedades = nil
       @propietario = nil
     end
@@ -104,8 +104,7 @@ module ModeloQytetet
     
     public
     def to_s
-      "Jugador: #{@nombre} \n encarcelado: #{@encarcelado} \n propiedades: #{@propiedades} \n 
-      saldo: #{@saldo} \n casillaActual: #{@casillaActual}"
+      "Jugador: #{@nombre} \n encarcelado: #{@encarcelado} \n propiedades: #{@propiedades} \n saldo: #{@saldo} \n casillaActual: #{@casillaActual}"
     end
     
     private :es_de_mi_propiedad, :eliminar_de_mis_propiedades, :tengo_saldo

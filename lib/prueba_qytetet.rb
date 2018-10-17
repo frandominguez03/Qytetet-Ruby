@@ -54,7 +54,7 @@ module ModeloQytetet
       
       while i < num_jugadores
         puts "Introduzca el nombre del jugador: "
-        cadena[i] = gets
+        cadena[i] = gets.chomp
         i+=1
       end
       
@@ -62,8 +62,7 @@ module ModeloQytetet
     end
     
     def self.main
-      nombres = Array.new
-      nombres << get_nombre_jugadores
+      nombres = get_nombre_jugadores
       @@juego.inicializar_juego(nombres)
       tablero = Tablero.new
       
@@ -80,10 +79,10 @@ module ModeloQytetet
       }
       
       puts "Imprimimos el tablero"
-      puts tablero.to_s << "\n"
+      puts tablero
       
       puts "Imprimimos los jugadores"
-      puts @@juego.jugadores.to_s << "\n"
+      puts @@juego.jugadores
       
       puts "Impimimos la instancia Qytetet"
       puts Qytetet.instance

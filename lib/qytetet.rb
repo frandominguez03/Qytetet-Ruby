@@ -26,11 +26,9 @@ module ModeloQytetet
     attr_accessor :cartaActual
     
     def to_s
-      "Tablero: #{@tablero} \n Mazo: #{@mazo} \n cartaActual: #{@cartaActual}
-       \n jugadorActual: #{@jugadorActual}"
+      "Tablero: #{@tablero} \n Mazo: #{@mazo.join("\n")} \n Jugadores: #{@jugadores.join("\n")} \n cartaActual: #{@cartaActual} \n jugadorActual: #{@jugadorActual}"
     end
     
-    protected
     def actuar_si_en_casilla_edificable
       
     end
@@ -38,8 +36,7 @@ module ModeloQytetet
     def actuar_si_en_casilla_no_edificable
       
     end
-    
-    public
+
     def aplicar_sorpresa
       
     end
@@ -73,8 +70,6 @@ module ModeloQytetet
     end
 
     def inicializar_cartas_sorpresa
-      @mazo = Array.new
-
       @mazo << Sorpresa.new("Te han pillado saqueando las arcas públicas del estado, vas a la cárcel.", @tablero.carcel.numeroCasilla, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("No sabemos si estabas cerca de la casilla inicial o no, pero ahora lo vas a estar.", 1, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("¿Eres supersticioso?", 13, TipoSorpresa::IRACASILLA)
@@ -93,10 +88,10 @@ module ModeloQytetet
             inicializar_jugadores(nombres)
     end
     
-    def inicializar_jugadores(nombres)
-      nombres.each { |nombre|
+    def inicializar_jugadores(nombres)    
+      for nombre in nombres
         @jugadores << Jugador.new(nombre)
-      }
+      end
     end
     
     def inicializar_tablero

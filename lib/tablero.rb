@@ -5,11 +5,12 @@ module ModeloQytetet
   class Tablero
     
     def initialize
+      @casillas = Array.new
       inicializar
     end
     
     def to_s
-      "Tablero: \n Casillas: #{@casillas} \n Carcel: #{@carcel}"
+      "Tablero: \n Casillas: #{@casillas.join("\n")} \n Carcel: #{@carcel}"
     end
     
     attr_reader :carcel, :casillas
@@ -20,7 +21,6 @@ module ModeloQytetet
     end
     
     def inicializar
-      @casillas = Array.new
       titulos = Array.new
       contador = 0
       
@@ -39,24 +39,24 @@ module ModeloQytetet
       titulos << TituloPropiedad.new("Calle Ruby", 500, 95, 14, 175, 275)
       
       # Ahora creamos todas las casillas
-      @casillas << Casilla.casilla(:SALIDA, 0)
+      @casillas << Casilla.casilla(TipoCasilla::SALIDA, 0, 1000)
       @casillas << Casilla.calle(1, titulos[contador])
-      @casillas << Casilla.casilla(:SORPRESA, 2)
+      @casillas << Casilla.casilla(TipoCasilla::SORPRESA, 2, 0)
       @casillas << Casilla.calle(3, titulos[contador+=1])
-      @casillas << Casilla.casilla(:JUEZ, 4)
+      @casillas << Casilla.casilla(TipoCasilla::JUEZ, 4, 0)
       @casillas << Casilla.calle( 5, titulos[contador+=1])
-      @casillas << Casilla.casilla(:PARKING, 6)
+      @casillas << Casilla.casilla(TipoCasilla::PARKING, 6, 0)
       @casillas << Casilla.calle(7, titulos[contador+=1])
-      @casillas << Casilla.casilla(:SORPRESA, 8)
+      @casillas << Casilla.casilla(TipoCasilla::SORPRESA, 8, 0)
       @casillas << Casilla.calle(9, titulos[contador+=1])
       @casillas << Casilla.calle(10, titulos[contador+=1])
       @casillas << Casilla.calle(11, titulos[contador+=1])
-      @casillas << Casilla.casilla(:IMPUESTO, 12)
+      @casillas << Casilla.casilla(TipoCasilla::IMPUESTO, 12, 0)
       @casillas << Casilla.calle(13, titulos[contador+=1])
-      @casillas << Casilla.casilla(:CARCEL, 14)
+      @casillas << Casilla.casilla(TipoCasilla::CARCEL, 14, 0)
       @carcel = @casillas[14]
       @casillas << Casilla.calle(15, titulos[contador+=1])
-      @casillas << Casilla.casilla(:SORPRESA, 16)
+      @casillas << Casilla.casilla(TipoCasilla::SORPRESA, 16, 0)
       @casillas << Casilla.calle(17, titulos[contador+=1])
       @casillas << Casilla.calle(18, titulos[contador+=1])
       @casillas << Casilla.calle(19, titulos[contador+=1])
