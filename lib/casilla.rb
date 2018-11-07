@@ -26,23 +26,23 @@ module ModeloQytetet
     private :titulo=
     
     def asignar_propietario(jugador)
-      
+      titulo.propietario(jugador)
     end
     
     def pagar_alquiler
-      
+      return @titulo.pagar_alquiler
     end
     
     def propietario_encarcelado
-      
+      @titulo.propietario_encarcelado
     end
     
     def soy_edificable
-      
+      return @tipo == TipoCasilla::CALLE
     end
     
     def tengo_propietario
-      
+      @titulo.tengo_propietario
     end
     
     

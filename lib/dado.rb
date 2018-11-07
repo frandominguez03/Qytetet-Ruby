@@ -14,6 +14,8 @@ class Dado
   
   protected
   def tirar
+    aleatorio = Random.new
     
+    aleatorio.rand(7)
   end
 end

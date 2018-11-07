@@ -19,7 +19,7 @@ module ModeloQytetet
     end
     
     attr_reader :nombre, :precioCompra, :alquilerBase, :factorRevalorizacion,
-      :hipotecaBase, :precioEedificar, :numHoteles, :numCasas
+      :hipotecaBase, :precioEdificar, :numHoteles, :numCasas
     
     attr_accessor :hipotecada, :propietario
     
@@ -29,15 +29,15 @@ module ModeloQytetet
     end
     
     def calcular_coste_hipotecar
-      
+      return @hipotecaBase + @numCasas*0.5*@hipotecaBase + @numHoteles*hipotecaBase
     end
     
     def calcular_importe_alquiler
-      
+      return @alquilerBase + (@numCasas*0.5 + @numHoteles*2)
     end
     
     def calcular_precio_venta
-      
+      return @precioCompra + (@numCasas+@numHoteles) * @precioEdificar  * @factorRevalorizacion
     end
     
     def cancelar_hipoteca
@@ -49,7 +49,7 @@ module ModeloQytetet
     end
     
     def edificar_casa
-      
+      @numCasas = @numCasas+1
     end
     
     def edificar_hotel
@@ -57,15 +57,25 @@ module ModeloQytetet
     end
     
     def hipotecar
+      coste_hipoteca = calcular_coste_hipotecar
+      @hipotecada = true
       
+      return coste_hipoteca
+    end
+    
+    def pagar_alquiler
+      coste_alquiler = calcular_importe_alquiler
+      @propietario.modificar_saldo(coste_alquiler)
+      
+      return coste_alquiler
     end
     
     def propietario_encarcelado
-      
+      return @propietario.encarcelado
     end
     
     def tengo_propietario
-      
+      return @propietario != nil
     end
     
     def to_s

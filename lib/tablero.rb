@@ -17,7 +17,7 @@ module ModeloQytetet
     
     protected
     def es_casilla_carcel(numeroCasilla)
-      
+      return numeroCasilla == @carcel;
     end
     
     def inicializar
@@ -64,11 +64,11 @@ module ModeloQytetet
     end
     
     def obtener_casilla_final(casilla, desplazamiento)
-      
+      return @casillas[casilla+desplazamiento]%20;
     end
     
     def obtener_casilla_numero(numeroCasilla)
-      
+      return @casillas[numeroCasilla];
     end
     
     private :inicializar
