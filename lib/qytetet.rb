@@ -207,26 +207,28 @@ module ModeloQytetet
       @tablero = Tablero.new
     end
     
-    def intentar_salir_carcel
-      if @metodo == MetodoSalirCarcel::TIRANDODADO
+    def intentar_salir_carcel(metodo)
+      if metodo == MetodoSalirCarcel::TIRANDODADO
         resultado = tirar_dado
         
         if resultado >= 5
           @jugadorActual.encarcelado(false)
         end
       else
-        if @metodo == MetodoSalirCarcel::PAGANDOLIBERTAD
+        if metodo == MetodoSalirCarcel::PAGANDOLIBERTAD
           @jugadorActual.pagar_libertad(@@PRECIO_LIBERTAD)
         end
       end
       
-      libre = @jugadorActual.encarcelado
+      encarcelado = @jugadorActual.encarcelado
       
-      if libre
+      if encarcelado
         set_estado_juego(EstadoJuego::JA_ENCARCELADO)
       else
         set_estado_juego(EstadoJuego::JA_PREPARADO)
       end
+      
+      return encarcelado
     end
     
     def jugar

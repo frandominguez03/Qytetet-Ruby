@@ -29,7 +29,7 @@ module ModeloQytetet
     end
     
     def calcular_coste_hipotecar
-      return @hipotecaBase + @numCasas*0.5*@hipotecaBase + @numHoteles*hipotecaBase
+      return @hipotecaBase + @numCasas*0.5*@hipotecaBase + @numHoteles*@hipotecaBase
     end
     
     def calcular_importe_alquiler
@@ -53,7 +53,7 @@ module ModeloQytetet
     end
     
     def edificar_hotel
-      
+      @numHoteles = @numHoteles+1
     end
     
     def hipotecar

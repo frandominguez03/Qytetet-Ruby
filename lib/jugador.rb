@@ -74,6 +74,7 @@ module ModeloQytetet
       num_casas = titulo.numCasas
       
       if num_casas < 4
+        hay_espacio = true
         coste_edificar_casa = titulo.precioEdificar
         tengo_saldo = tengo_saldo(coste_edificar_casa)
         
@@ -84,7 +85,7 @@ module ModeloQytetet
         end
       end
       
-      return edificada
+      return hay_espacio && tengo_saldo
     end
     
     def edificar_hotel(titulo)
