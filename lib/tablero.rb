@@ -14,7 +14,7 @@ module ModeloQytetet
     end
     
     attr_reader :carcel, :casillas
-    
+
     def es_casilla_carcel(numeroCasilla)
       return numeroCasilla == @carcel;
     end

@@ -12,7 +12,6 @@ class Dado
   
   attr_reader :valor
   
-  protected
   def tirar
     aleatorio = Random.new
     

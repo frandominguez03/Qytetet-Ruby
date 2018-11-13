@@ -26,7 +26,9 @@ module ModeloQytetet
     private :titulo=
     
     def asignar_propietario(jugador)
-      titulo.propietario(jugador)
+      @titulo.propietario = jugador
+      
+      return @titulo
     end
     
     def pagar_alquiler

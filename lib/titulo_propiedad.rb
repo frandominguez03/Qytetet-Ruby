@@ -23,9 +23,10 @@ module ModeloQytetet
     
     attr_accessor :hipotecada, :propietario
     
-    protected
     def calcular_coste_cancelar
+      coste = calcular_coste_hipotecar
       
+      return coste + coste*0.1
     end
     
     def calcular_coste_hipotecar

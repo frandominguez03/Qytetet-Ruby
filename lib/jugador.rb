@@ -17,7 +17,16 @@ module ModeloQytetet
     attr_accessor :encarcelado, :cartaLibertad, :casillaActual
     
     def cancelar_hipoteca(titulo)
+      cancelar = false
+      coste_cancelar = titulo.calcular_coste_cancelar
       
+      if tengo_saldo(coste_cancelar)
+        cancelar=true
+        
+        titulo.cancelar_hipoteca
+      end
+    
+    return cancelar
     end
     
     def comprar_titulo_propiedad
@@ -71,20 +80,21 @@ module ModeloQytetet
     
     def edificar_casa(titulo)
       num_casas = titulo.numCasas
+      edificada = false
       
       if num_casas < 4
         hay_espacio = true
         coste_edificar_casa = titulo.precioEdificar
-        tengo_saldo = tengo_saldo(coste_edificar_casa)
+        tengosaldo = tengo_saldo(coste_edificar_casa)
         
-        if tengo_saldo
+        if tengosaldo && hay_espacio
           titulo.edificar_casa
-          @jugadorActual.modificar_saldo(-coste_edificar_casa)
+          modificar_saldo(-coste_edificar_casa)
           edificada = true
         end
       end
       
-      return hay_espacio && tengo_saldo
+      return edificada
     end
     
     def edificar_hotel(titulo)
@@ -133,13 +143,14 @@ module ModeloQytetet
     
     def obtener_capital
       saldo_total = 0
-      
+
       for i in @propiedades
-        saldo_total = saldo_total + i.getPrecioCompra + i.getNumCasas*i.getPrecioEdificar
-        + i.getNumHoteles*i.getPrecioEdificar
+        puts i.precioCompra
+        saldo_total = saldo_total + i.precioCompra + i.numCasas*i.precioEdificar
+        + i.numHoteles*i.precioEdificar
         
-        if i.getHipotecada
-          saldo_total = saldo_total - i.getHipotecaBase
+        if i.hipotecada
+          saldo_total = saldo_total - i.hipotecaBase
         end
         
       end
@@ -182,7 +193,13 @@ module ModeloQytetet
     end
     
     def tengo_saldo(cantidad)
-      return @saldo > cantidad
+      resultado = false
+      
+      if @saldo > cantidad
+        resultado = true
+      end
+      
+      return resultado
     end
     
     def vender_propiedad(casilla)

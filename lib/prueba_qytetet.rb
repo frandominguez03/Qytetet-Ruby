@@ -10,6 +10,8 @@ require_relative 'tablero'
 require_relative 'qytetet'
 require_relative 'dado'
 require_relative 'jugador'
+require_relative 'estado_juego'
+require_relative 'metodo_salir_carcel'
 
 module ModeloQytetet
   class PruebaQytetet
@@ -79,14 +81,51 @@ module ModeloQytetet
       
       #puts "Imprimimos los jugadores"
       #puts @@juego.jugadores
+      #puts @@juego.jugadorActual
       
       #puts "Impimimos la instancia Qytetet"
       #puts Qytetet.instance
       
       # Probamos el método mover, comprar, diferentes casillas...
-      puts @@juego.jugadorActual.to_s
-      @@juego.mover(3)
-      puts @@juego.jugadorActual.casillaActual
+      #@@juego.mover(3)
+      #puts @@juego.jugadorActual.casillaActual.numeroCasilla
+      #@@juego.mover(13)
+      #puts @@juego.jugadorActual.casillaActual.numeroCasilla
+      #@@juego.jugadorActual.comprar_titulo_propiedad
+      #puts @@juego.jugadores
+      #@@juego.jugadorActual.casillaActual.asignar_propietario(@@juego.jugadorActual)
+      #@@juego.siguiente_jugador
+      #@@juego.mover(13)
+      #puts @@juego.jugadorActual.saldo
+      
+      # Probamos a caer en una sorpresa y a aplicar sorpresa después
+      #@@juego.mover(2)
+      #puts @@juego.mazo[0]
+      #@@juego.aplicar_sorpresa
+      #puts @@juego.jugadorActual.casillaActual
+      
+      # Probamos a hipotecar, cancelar hipoteca, vender, edificar casas y hoteles...
+      #@@juego.mover(9)
+      #@@juego.hipotecar_propiedad(@@juego.jugadorActual.casillaActual.numeroCasilla)
+      #@@juego.cancelar_hipoteca(@@juego.jugadorActual.casillaActual.numeroCasilla)
+      #@@juego.vender_propiedad(@@juego.jugadorActual.casillaActual.numeroCasilla)
+      #@@juego.edificar_casa(@@juego.jugadorActual.casillaActual.numeroCasilla)
+      #@@juego.edificar_hotel(@@juego.jugadorActual.casillaActual.numeroCasilla)
+      
+      # Probamos a salir de la carcel
+      #@@juego.jugadorActual.ir_a_carcel(tablero.carcel)
+      #if(@@juego.jugadorActual.tengo_carta_libertad)
+      #  @@juego.intentar_salir_carcel(MetodoSalirCarcel::PAGANDOLIBERTAD)
+      #else
+      #  consigue = @@juego.intentar_salir_carcel(MetodoSalirCarcel::TIRANDODADO)
+      #  
+      #  if consigue
+      #    puts "Sales de la cárcel"
+      #  else
+      #    puts "Al palo"
+      #  end
+      #end
+
     end
   end
   

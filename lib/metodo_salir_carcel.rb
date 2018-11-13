@@ -4,6 +4,6 @@
 module ModeloQytetet
   module MetodoSalirCarcel
     TIRANDODADO = :Tirando_dado
-    PAGANDOLIBERATD = :Pagando_libertad
+    PAGANDOLIBERTAD = :Pagando_libertad
   end 
 end
