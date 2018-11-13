@@ -46,19 +46,15 @@ module ModeloQytetet
     end
     
     def self.get_nombre_jugadores
-      cadena = Array.new
-      i=0
+      puts "Introduzca el numero de jugadores"
+      numero=gets.chomp.to_i
+      nombres=Array.new
       
-      puts "Introduzca el numero de jugadores: "
-      num_jugadores = gets.chomp.to_i
-      
-      while i < num_jugadores
-        puts "Introduzca el nombre del jugador: "
-        cadena[i] = gets.chomp
-        i+=1
-      end
-      
-      return cadena
+      for i in 1..numero
+        puts "Introduzca el nombre del jugador #{i}"
+        nombres.push(gets.chomp)
+      end      
+    return nombres
     end
     
     def self.main
@@ -66,26 +62,31 @@ module ModeloQytetet
       @@juego.inicializar_juego(nombres)
       tablero = Tablero.new
       
-      puts "Imprimimos los métodos de la clase"
-      puts "Cartas con valor mayor a cero: "
-      puts mayor_que_cero << "\n"
+      #puts "Imprimimos los métodos de la clase"
+      #puts "Cartas con valor mayor a cero: "
+      #puts mayor_que_cero << "\n"
+      #
+      #puts "Cartas del tipo ir a casilla: "
+      #puts tipo_casilla << "\n"
       
-      puts "Cartas del tipo ir a casilla: "
-      puts tipo_casilla << "\n"
+      #TipoSorpresa::constants.each { |const_get|
+      #  puts "Cartas del tipo #{const_get}: "
+      #  puts tipo_sorpresa(const_get)
+      #}
       
-      TipoSorpresa::constants.each { |const_get|
-        puts "Cartas del tipo #{const_get}: "
-        puts tipo_sorpresa(const_get)
-      }
+      #puts "Imprimimos el tablero"
+      #puts tablero
       
-      puts "Imprimimos el tablero"
-      puts tablero
+      #puts "Imprimimos los jugadores"
+      #puts @@juego.jugadores
       
-      puts "Imprimimos los jugadores"
-      puts @@juego.jugadores
+      #puts "Impimimos la instancia Qytetet"
+      #puts Qytetet.instance
       
-      puts "Impimimos la instancia Qytetet"
-      puts Qytetet.instance
+      # Probamos el método mover, comprar, diferentes casillas...
+      puts @@juego.jugadorActual.to_s
+      @@juego.mover(3)
+      puts @@juego.jugadorActual.casillaActual
     end
   end
   

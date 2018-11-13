@@ -16,7 +16,6 @@ module ModeloQytetet
     attr_reader :nombre, :propiedades, :saldo
     attr_accessor :encarcelado, :cartaLibertad, :casillaActual
     
-    protected
     def cancelar_hipoteca(titulo)
       
     end
@@ -119,6 +118,10 @@ module ModeloQytetet
       modificar_saldo(coste_hipoteca)
     end
     
+    def get_casilla_actual
+      return @casillaActual
+    end
+    
     def ir_a_carcel(casilla)
       @casillaActual = casilla
       @encarcelado = true
@@ -131,12 +134,12 @@ module ModeloQytetet
     def obtener_capital
       saldo_total = 0
       
-      for i in @propiedades.size
-        saldo_total = saldo_total + @propiedades[i].getPrecioCompra + @propiedades[i].getNumCasas*@propiedades[i].getPrecioEdificar
-        + @propiedades[i].getNumHoteles*@propiedades[i].getPrecioEdificar
+      for i in @propiedades
+        saldo_total = saldo_total + i.getPrecioCompra + i.getNumCasas*i.getPrecioEdificar
+        + i.getNumHoteles*i.getPrecioEdificar
         
-        if @propiedades[i].getHipotecada
-          saldo_total = saldo_total - @propiedades[i].getHipotecaBase
+        if i.getHipotecada
+          saldo_total = saldo_total - i.getHipotecaBase
         end
         
       end
@@ -189,7 +192,6 @@ module ModeloQytetet
       
     end
     
-    public
     def to_s
       "Jugador: #{@nombre} \n capital: #{obtener_capital} \n encarcelado: #{@encarcelado} \n propiedades: #{@propiedades} \n saldo: #{@saldo} \n casillaActual: #{@casillaActual}"
     end

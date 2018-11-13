@@ -14,18 +14,18 @@ module ModeloQytetet
     @@SALDO_SALIDA = 1000
 
     def initialize
+      inicializar_tablero
       @mazo = Array.new
       @jugadores = Array.new
-      @cartaActual = nil
-      @jugadorActual = nil
+      @cartaActual
+      @jugadorActual
       @dado = Dado.instance
-      @estado = nil
-      @metodo = nil
-      inicializar_tablero
+      @estado
+      @metodo
     end
 
-    attr_reader :mazo, :jugadores, :jugadorActual, :dado
-    attr_accessor :cartaActual
+    attr_reader :mazo, :dado
+    attr_accessor :cartaActual, :jugadorActual, :jugadores
     
     def to_s
       "Tablero: #{@tablero} \n Mazo: #{@mazo.join("\n")} \n Jugadores: #{@jugadores.join("\n")} \n cartaActual: #{@cartaActual} \n jugadorActual: #{@jugadorActual}"
@@ -67,7 +67,8 @@ module ModeloQytetet
           encarcelar_jugador
         else
           if casilla_actual.tipo == TipoCasilla::SORPRESA
-            @mazo.delete(@cartaActual)
+            @cartaActual = @mazo.at(0)
+            @mazo.delete(0)
             set_estado_juego(EstadoJuego::JA_CONSORPRESA)
           end
         end
@@ -237,11 +238,11 @@ module ModeloQytetet
       mover(casilla_final)
     end
     
-    protected
     def mover(numCasillaDestino)
+      puts @jugadorActual.to_s
       casilla_inicial = @jugadorActual.casillaActual
       casilla_final = @tablero.obtener_casilla_numero(numCasillaDestino)
-      @jugadorActual.casillaActual = casillaFinal
+      @jugadorActual.casillaActual = casilla_final
       
       if numCasillaDestino < casilla_inicial.numeroCasilla
         @jugadorActual.modificar_saldo(@@SALDO_SALIDA)
@@ -254,7 +255,6 @@ module ModeloQytetet
       end
     end
     
-    public
     def obtener_casilla_jugador_actual
       
     end
@@ -302,13 +302,13 @@ module ModeloQytetet
     end
     
     def salida_jugadores
+      r=Random.new()
       for i in @jugadores
-        @jugadores[i].casillaActual = 0
+        i.casillaActual = @tablero.obtener_casilla_numero(0)
+        puts i.casillaActual.to_s
       end
-      
-      aleatorio = Random.new
-      aleatorio.rand(@jugadores.size)
-      @jugadorActual = @jugadores[rand]
+      indiceJA=r.rand(@jugadores.size)
+      @jugador_actual=@jugadores[indiceJA]
       
       set_estado_juego(Estado::JA_PREPARADO)
     end
@@ -336,12 +336,10 @@ module ModeloQytetet
       
     end
     
-    protected
     def tirar_dado
       @dado.tirar
     end
     
-    public
     def vender_propiedad(numeroCasilla)
       casilla = @tablero.obtener_numero_casilla(numeroCasilla)
       @jugadorActual.vender_propiedad(casilla)

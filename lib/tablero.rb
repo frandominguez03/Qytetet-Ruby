@@ -15,7 +15,6 @@ module ModeloQytetet
     
     attr_reader :carcel, :casillas
     
-    protected
     def es_casilla_carcel(numeroCasilla)
       return numeroCasilla == @carcel;
     end
