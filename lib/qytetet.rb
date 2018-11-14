@@ -33,8 +33,10 @@ module ModeloQytetet
     
     def actuar_si_en_casilla_edificable
       debo_pagar = @jugadorActual.debo_pagar_alquiler
+      puts debo_pagar
       
       if debo_pagar
+        puts "hola"
         @jugadorActual.pagar_alquiler
         
         if @jugadorActual.saldo <= 0

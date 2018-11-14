@@ -113,19 +113,27 @@ module ModeloQytetet
       #@@juego.edificar_hotel(@@juego.jugadorActual.casillaActual.numeroCasilla)
       
       # Probamos a salir de la carcel
-      #@@juego.jugadorActual.ir_a_carcel(tablero.carcel)
-      #if(@@juego.jugadorActual.tengo_carta_libertad)
-      #  @@juego.intentar_salir_carcel(MetodoSalirCarcel::PAGANDOLIBERTAD)
-      #else
-      #  consigue = @@juego.intentar_salir_carcel(MetodoSalirCarcel::TIRANDODADO)
-      #  
-      #  if consigue
-      #    puts "Sales de la cárcel"
-      #  else
-      #    puts "Al palo"
-      #  end
-      #end
+#      @@juego.jugadorActual.ir_a_carcel(tablero.carcel)
+#      if(@@juego.jugadorActual.tengo_carta_libertad)
+#        @@juego.intentar_salir_carcel(MetodoSalirCarcel::PAGANDOLIBERTAD)
+#      else
+#        consigue = @@juego.intentar_salir_carcel(MetodoSalirCarcel::TIRANDODADO)
+#        
+#        if consigue
+#          puts "Sales de la cárcel"
+#        else
+#          puts "Al palo"
+#        end
+#      end
 
+#      puts @@juego.jugadorActual
+      @@juego.mover(13)
+      @@juego.comprar_titulo_propiedad
+      puts @@juego.jugadorActual.casillaActual.titulo.propietario
+      @@juego.siguiente_jugador
+      @@juego.mover(13)
+      puts @@juego.jugadorActual.casillaActual.titulo.alquilerBase
+      puts @@juego.jugadorActual
     end
   end
   

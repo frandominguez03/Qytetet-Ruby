@@ -23,7 +23,6 @@ module ModeloQytetet
     
     attr_reader :numeroCasilla, :tipo, :coste, :titulo
     attr_accessor :titulo
-    private :titulo=
     
     def asignar_propietario(jugador)
       @titulo.propietario = jugador
@@ -32,7 +31,9 @@ module ModeloQytetet
     end
     
     def pagar_alquiler
-      return @titulo.pagar_alquiler
+      coste = @titulo.pagar_alquiler
+      
+      return coste
     end
     
     def propietario_encarcelado

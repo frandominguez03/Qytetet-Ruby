@@ -15,6 +15,6 @@ class Dado
   def tirar
     aleatorio = Random.new
     
-    aleatorio.rand(7)
+    @valor = aleatorio.rand(6)+1
   end
 end

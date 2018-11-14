@@ -42,11 +42,7 @@ module ModeloQytetet
     end
     
     def cancelar_hipoteca
-      
-    end
-    
-    def cobrar_alquiler(coste)
-      
+      @hipotecada = false
     end
     
     def edificar_casa
@@ -55,6 +51,7 @@ module ModeloQytetet
     
     def edificar_hotel
       @numHoteles = @numHoteles+1
+      @numCasas = 0
     end
     
     def hipotecar

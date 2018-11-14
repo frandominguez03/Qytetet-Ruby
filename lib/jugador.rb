@@ -34,7 +34,7 @@ module ModeloQytetet
       comprado = false
       
       if coste_compra < @saldo
-        titulo = @casillaActual.asignar_propietario(@jugadorActual)
+        titulo = @casillaActual.asignar_propietario(self)
         @propiedades.push(titulo)
         modificar_saldo(-coste_compra)
         comprado = true
@@ -55,21 +55,23 @@ module ModeloQytetet
     
     def debo_pagar_alquiler
       titulo = @casillaActual.titulo
-      es_de_mi_propiedad = es_de_mi_propiedad(titulo)
+      esdemipropiedad = es_de_mi_propiedad(titulo)
       
-      if !es_de_mi_propiedad && titulo.tengo_propietario
-        tiene_propietario = true
+      if !esdemipropiedad
+        tiene_propietario = titulo.tengo_propietario
       end
       
-      if !es_de_mi_propiedad && tiene_propietario
+      if !esdemipropiedad && tiene_propietario
         encarc = titulo.propietario_encarcelado
       end
       
-      if !es_de_mi_propiedad && tiene_propietario && !encarc
+      if !esdemipropiedad && tiene_propietario && !encarc
         esta_hipotecada = titulo.hipotecada
       end
       
-      return !es_de_mi_propiedad && tiene_propietario && !encarc && !esta_hipotecada
+      debo_pagar = !esdemipropiedad && tiene_propietario && !encarc && !esta_hipotecada
+      
+      return debo_pagar
     end
     
     def devolver_carta_libertad
@@ -98,8 +100,21 @@ module ModeloQytetet
     end
     
     def edificar_hotel(titulo)
+    num_hoteles = titulo.numHoteles
+    edificada=false
+    
+    if num_hoteles < 4
+      coste_edificar_hotel=titulo.precioEdificar
+      tengosaldo=tengo_saldo(coste_edificar_hotel)
       
+      if tengosaldo
+        titulo.edificar_hotel
+        @jugadorActual.modificar_saldo(-coste_edificar_hotel)
+        edificada=true
+      end
     end
+    return edificada
+end
     
     def eliminar_de_mis_propiedades(titulo)
       titulo.propietario = nil
@@ -111,7 +126,7 @@ module ModeloQytetet
       tiene = false
       
       for i in @propiedades
-        if @propiedades[i].getTitulo == titulo
+        if i == titulo
           tiene = true
         end
       end
