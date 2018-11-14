@@ -46,8 +46,8 @@ module ModeloQytetet
     def cuantas_casas_hoteles_tengo
       contador = 0
       
-      for i in @propiedades.size
-         contador = contador + @propiedades[i].getNumCasas + @propiedades[i].getNumHoteles
+      for i in @propiedades
+         contador = contador + i.getNumCasas + i.getNumHoteles
       end
       
       return contador
@@ -101,10 +101,10 @@ module ModeloQytetet
     
     def edificar_hotel(titulo)
     num_hoteles = titulo.numHoteles
-    edificada=false
+    edificada = false
     
     if num_hoteles < 4
-      coste_edificar_hotel=titulo.precioEdificar
+      coste_edificar_hotel = titulo.precioEdificar
       tengosaldo=tengo_saldo(coste_edificar_hotel)
       
       if tengosaldo
@@ -113,6 +113,7 @@ module ModeloQytetet
         edificada=true
       end
     end
+    
     return edificada
 end
     
@@ -135,7 +136,7 @@ end
     end
     
     def estoy_en_calle_libre
-      
+      return !@casillaActual.tengo_propietario
     end
     
     def hipotecar_propiedad(titulo)
@@ -160,7 +161,6 @@ end
       saldo_total = 0
 
       for i in @propiedades
-        puts i.precioCompra
         saldo_total = saldo_total + i.precioCompra + i.numCasas*i.precioEdificar
         + i.numHoteles*i.precioEdificar
         
@@ -177,8 +177,8 @@ end
       propiedades = Array.new
       
       for i in @propiedades
-        if @propiedades[i].getHipotecada == hipotecada
-          propiedades << @propiedades[i]
+        if i.getHipotecada == hipotecada
+          propiedades << i
         end
       end
       
@@ -191,7 +191,7 @@ end
     end
     
     def pagar_impuesto
-      
+      @saldo -= @casillaActual.coste
     end
     
     def pagar_libertad(cantidad)

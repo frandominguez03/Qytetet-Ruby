@@ -46,8 +46,7 @@ module ModeloQytetet
     
     def tengo_propietario
       @titulo.tengo_propietario
-    end
-    
+    end    
     
     def to_s
       if @tipo == TipoCasilla::CALLE

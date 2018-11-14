@@ -127,13 +127,13 @@ module ModeloQytetet
 #      end
 
 #      puts @@juego.jugadorActual
-      @@juego.mover(13)
-      @@juego.comprar_titulo_propiedad
-      puts @@juego.jugadorActual.casillaActual.titulo.propietario
-      @@juego.siguiente_jugador
-      @@juego.mover(13)
-      puts @@juego.jugadorActual.casillaActual.titulo.alquilerBase
-      puts @@juego.jugadorActual
+#      @@juego.mover(13)
+#      @@juego.comprar_titulo_propiedad
+#      puts @@juego.jugadorActual.casillaActual.titulo.propietario
+#      @@juego.siguiente_jugador
+#      @@juego.mover(13)
+#      puts @@juego.jugadorActual.casillaActual.titulo.alquilerBase
+#      puts @@juego.jugadorActual
     end
   end
   

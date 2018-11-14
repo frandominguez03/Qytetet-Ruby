@@ -36,7 +36,6 @@ module ModeloQytetet
       puts debo_pagar
       
       if debo_pagar
-        puts "hola"
         @jugadorActual.pagar_alquiler
         
         if @jugadorActual.saldo <= 0
@@ -112,7 +111,7 @@ module ModeloQytetet
           end
         when TipoSorpresa::PORJUGADOR
           for i in @@MAX_JUGADORES-1
-            jugador = siguiente
+            jugador = siguiente_jugador
             
             if jugador != @jugadorActual
               jugador.modificar_saldo(@cartaActual.valor)
@@ -137,7 +136,7 @@ module ModeloQytetet
       titulo = casilla.titulo
       cancelar = @jugadorActual.cancelar_hipoteca(titulo)
       @estado = EstadoJuego::JA_PUEDEGESTIONAR
-return cancelar
+      return cancelar
     end
     
     def comprar_titulo_propiedad
@@ -159,7 +158,16 @@ return cancelar
     end
     
     def edificar_hotel(numeroCasilla)
+      casilla = @tablero.obtener_casilla_numero(numeroCasilla)
       
+      if casilla.tipo == TipoCasilla::CALLE && casilla.titulo.numCasas == 4
+        titulo = casilla.titulo
+        edificada = @jugadorActual.edificar_hotel(titulo)
+
+        if edificada
+          @estado = EstadoJuego::JA_PUEDEGESTIONAR
+        end
+      end
     end
     
     def encarcelar_jugador
@@ -289,11 +297,11 @@ return cancelar
       propiedades = Array.new
       
       for i in @jugadorActual.propiedades
-        if @jugadorActual.propiedades[i].hipotecada == estadoHipoteca
-          nombre = @jugadorActual.propiedades[i].nombre
+        if i.hipotecada == estadoHipoteca
+          nombre = i.nombre
           
-          if o.titulo.nombre == nombre
-          propiedades << o.numeroCasilla
+          if i.titulo.nombre == nombre
+          propiedades << i.numeroCasilla
           end
         end
       end
@@ -319,10 +327,6 @@ return cancelar
       indice = r.rand(@jugadores.size)
       @jugadorActual = @jugadores[indice]
       @estado = EstadoJuego::JA_PREPARADO
-    end
-    
-    def set_carta_actual(cartaActual)
-      
     end
     
     def siguiente_jugador
