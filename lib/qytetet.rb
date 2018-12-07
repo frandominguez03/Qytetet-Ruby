@@ -33,7 +33,6 @@ module ModeloQytetet
     
     def actuar_si_en_casilla_edificable
       debo_pagar = @jugadorActual.debo_pagar_alquiler
-      puts debo_pagar
       
       if debo_pagar
         @jugadorActual.pagar_alquiler
@@ -127,6 +126,10 @@ module ModeloQytetet
               @estado = EstadoJuego::ALGUNJUGADORENBANCARROTA
             end
           end
+        when TipoSorpresa::CONVERTIRME
+          pos = @jugadores.index(@jugadorActual)
+          especulador = @jugadorActual.convertirme(@cartaActual.valor)
+          @jugadores[pos] = especulador
         end
       end
     end
@@ -171,7 +174,7 @@ module ModeloQytetet
     end
     
     def encarcelar_jugador
-      if !@jugadorActual.tengo_carta_libertad
+      if @jugadorActual.debo_ir_a_carcel
         casilla_carcel = @tablero.carcel
         @jugadorActual.ir_a_carcel(casilla_carcel)
         @estado = EstadoJuego::JA_ENCARCELADO
@@ -194,6 +197,8 @@ module ModeloQytetet
     end
 
     def inicializar_cartas_sorpresa
+      @mazo << Sorpresa.new("Te conviertes en un especulador", 3000, TipoSorpresa::CONVERTIRME)
+      @mazo << Sorpresa.new("Esta carta, usando magia negra, te convierte en un especulador", 5000, TipoSorpresa::CONVERTIRME)
       @mazo << Sorpresa.new("Te han pillado saqueando las arcas públicas del estado, vas a la cárcel.", @tablero.carcel.numeroCasilla, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("No sabemos si estabas cerca de la casilla inicial o no, pero ahora lo vas a estar.", 1, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("¿Eres supersticioso?", 13, TipoSorpresa::IRACASILLA)
@@ -215,7 +220,7 @@ module ModeloQytetet
     
     def inicializar_jugadores(nombres)    
       for nombre in nombres
-        @jugadores << Jugador.new(nombre)
+        @jugadores << Jugador.nuevo(nombre)
       end
     end
     
