@@ -31,6 +31,7 @@ module ModeloQytetet
       "Tablero: #{@tablero} \n Mazo: #{@mazo.join("\n")} \n Jugadores: #{@jugadores.join("\n")} \n cartaActual: #{@cartaActual} \n jugadorActual: #{@jugadorActual}"
     end
     
+    
     def actuar_si_en_casilla_edificable
       debo_pagar = @jugadorActual.debo_pagar_alquiler
       
@@ -75,6 +76,7 @@ module ModeloQytetet
       end
     end
 
+    public
     def aplicar_sorpresa
       @estado = EstadoJuego::JA_PUEDEGESTIONAR
       
@@ -199,7 +201,7 @@ module ModeloQytetet
     def inicializar_cartas_sorpresa
       @mazo << Sorpresa.new("Te conviertes en un especulador", 3000, TipoSorpresa::CONVERTIRME)
       @mazo << Sorpresa.new("Esta carta, usando magia negra, te convierte en un especulador", 5000, TipoSorpresa::CONVERTIRME)
-      @mazo << Sorpresa.new("Te han pillado saqueando las arcas públicas del estado, vas a la cárcel.", @tablero.carcel.numeroCasilla, TipoSorpresa::IRACASILLA)
+      @mazo << Sorpresa.new("Te han pillado saqueando las arcas públicas del estado, vas a la cárcel.", @tablero.carcel.numCasilla, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("No sabemos si estabas cerca de la casilla inicial o no, pero ahora lo vas a estar.", 1, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("¿Eres supersticioso?", 13, TipoSorpresa::IRACASILLA)
       @mazo << Sorpresa.new("Resulta que un funcionario de la cárcel es amigo tuyo. De casualidades está hecha la vida. Sales de la cárcel.", 0, TipoSorpresa::SALIRCARCEL)
@@ -265,7 +267,7 @@ module ModeloQytetet
       casilla_final = @tablero.obtener_casilla_numero(numCasillaDestino)
       @jugadorActual.casillaActual = casilla_final
       
-      if numCasillaDestino < casilla_inicial.numeroCasilla
+      if numCasillaDestino < casilla_inicial.numCasilla
         @jugadorActual.modificar_saldo(@@SALDO_SALIDA)
       end
       
@@ -359,6 +361,7 @@ module ModeloQytetet
       
     end
     
-    private :encarcelar_jugador, :salida_jugadores
+    private :encarcelar_jugador, :salida_jugadores, :inicializar_cartas_sorpresa, :inicializar_jugadores,
+      :inicializar_tablero
   end
 end

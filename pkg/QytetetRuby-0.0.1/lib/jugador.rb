@@ -55,8 +55,8 @@ module ModeloQytetet
       comprado = false
       
       if coste_compra < @saldo
-        titulo = @casillaActual.asignar_propietario(self)
-        @propiedades.push(titulo)
+        @casillaActual.asignar_propietario(self)
+        @propiedades.push(@casillaActual.titulo)
         modificar_saldo(-coste_compra)
         comprado = true
       end
@@ -119,16 +119,16 @@ module ModeloQytetet
     end
     
     def edificar_hotel(titulo)
-    edificada = false
-    
-    if puedo_edificar_hotel(titulo)
-      titulo.edificar_hotel
-      @saldo = @saldo-titulo.precioEdificar
-      edificada = true
+      edificada = false
+
+      if puedo_edificar_hotel(titulo)
+        titulo.edificar_hotel
+        @saldo = @saldo-titulo.precioEdificar
+        edificada = true
+      end
+
+      return edificada
     end
-    
-    return edificada
-end
     
     def eliminar_de_mis_propiedades(titulo)
       titulo.propietario = nil
@@ -172,15 +172,14 @@ end
     
     def obtener_capital
       saldo_total = 0
-
+      
       for i in @propiedades
         saldo_total = saldo_total + i.precioCompra + i.numCasas*i.precioEdificar
         + i.numHoteles*i.precioEdificar
         
         if i.hipotecada
           saldo_total = saldo_total - i.hipotecaBase
-        end
-        
+        end        
       end
       
       return saldo_total

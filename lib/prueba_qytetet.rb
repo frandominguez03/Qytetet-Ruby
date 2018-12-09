@@ -13,6 +13,7 @@ require_relative 'jugador'
 require_relative 'estado_juego'
 require_relative 'metodo_salir_carcel'
 require_relative 'especulador'
+require_relative 'calle'
 
 module ModeloQytetet
   class PruebaQytetet
@@ -89,11 +90,11 @@ module ModeloQytetet
       
       # Probamos el método mover, comprar, diferentes casillas...
 #      @@juego.mover(3)
-#      puts @@juego.jugadorActual.casillaActual.numeroCasilla
+#      puts @@juego.jugadorActual.casillaActual
 #      @@juego.mover(13)
-#      puts @@juego.jugadorActual.casillaActual.numeroCasilla
+#      puts @@juego.jugadorActual.casillaActual.numCasilla
 #      @@juego.jugadorActual.comprar_titulo_propiedad
-#      puts @@juego.jugadores
+#      puts @@juego.jugadorActual
 #      @@juego.jugadorActual.casillaActual.asignar_propietario(@@juego.jugadorActual)
 #      @@juego.siguiente_jugador
 #      @@juego.mover(13)
@@ -108,11 +109,11 @@ module ModeloQytetet
       
       # Probamos a hipotecar, cancelar hipoteca, vender, edificar casas y hoteles...
 #      @@juego.mover(9)
-#      @@juego.hipotecar_propiedad(@@juego.jugadorActual.casillaActual.numeroCasilla)
-#      @@juego.cancelar_hipoteca(@@juego.jugadorActual.casillaActual.numeroCasilla)
-#      @@juego.vender_propiedad(@@juego.jugadorActual.casillaActual.numeroCasilla)
-#      @@juego.edificar_casa(@@juego.jugadorActual.casillaActual.numeroCasilla)
-#      @@juego.edificar_hotel(@@juego.jugadorActual.casillaActual.numeroCasilla)
+#      @@juego.hipotecar_propiedad(@@juego.jugadorActual.casillaActual.numCasilla)
+#      @@juego.cancelar_hipoteca(@@juego.jugadorActual.casillaActual.numCasilla)
+#      @@juego.vender_propiedad(@@juego.jugadorActual.casillaActual.numCasilla)
+#      @@juego.edificar_casa(@@juego.jugadorActual.casillaActual.numCasilla)
+#      @@juego.edificar_hotel(@@juego.jugadorActual.casillaActual.numCasilla)
 #      puts @@juego.jugadorActual
       
       # Probamos a salir de la carcel
@@ -140,9 +141,9 @@ module ModeloQytetet
 #      puts @@juego.jugadorActual
 
       # Probamos la clase especulador
-      @@juego.mover(2)
-      @@juego.aplicar_sorpresa
-      puts @@juego.jugadorActual
+#      @@juego.mover(2)
+#      @@juego.aplicar_sorpresa
+#      puts @@juego.jugadorActual
     end
   end
   

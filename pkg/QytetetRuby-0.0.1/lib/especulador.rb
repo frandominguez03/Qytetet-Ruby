@@ -10,11 +10,11 @@ module ModeloQytetet
     
     protected
     def pagar_impuesto
-      this.saldo = super/2;
+      self.saldo = super/2;
     end
     
     def convertirme
-      return this
+      return self
     end
     
     def debo_ir_a_carcel
@@ -31,8 +31,8 @@ module ModeloQytetet
     def pagar_fianza
       puede_pagar = false
       
-      if this.saldo > this.fianza
-        this.saldo = saldo-fianza
+      if self.saldo > self.fianza
+        self.saldo = saldo-fianza
         puede_pagar = true
       end
       
