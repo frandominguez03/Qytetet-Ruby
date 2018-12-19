@@ -1,8 +1,6 @@
-# encoding: utf-8
-# author: Francisco Domínguez
-
+#encoding: utf-8
 module ModeloQytetet
-  module EstadoJuego
+   module EstadoJuego
     JA_CONSORPRESA = :Con_sorpresa
     ALGUNJUGADORENBANCARROTA = :Algun_jugador_bancarrota
     JA_PUEDECOMPRAROGESTIONAR = :Puede_comprar_gestionar

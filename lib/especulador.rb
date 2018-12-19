@@ -1,19 +1,20 @@
-# encoding: utf-8
-# author: Francisco Domínguez
-
 module ModeloQytetet
   class Especulador < Jugador
+    attr_accessor :fianza
     def self.copia(unJugador, fianza)
-      @fianza = fianza
-      super(unJugador)
+      @fianza
+      especulador = super(unJugador)
+      especulador.fianza = fianza
+      
+      return especulador
     end
     
-    protected
+    
     def pagar_impuesto
-      self.saldo = super/2;
+      modificar_saldo(-casilla_actual.precioC/2)
     end
     
-    def convertirme
+    def convertirme(fianza)
       return self
     end
     
@@ -27,19 +28,19 @@ module ModeloQytetet
       return resultado
     end
     
-    private
+    
     def pagar_fianza
       puede_pagar = false
       
-      if self.saldo > self.fianza
-        self.saldo = saldo-fianza
+      if tengo_saldo(@fianza)
+        modificar_saldo(-@fianza)
         puede_pagar = true
       end
       
       return puede_pagar
     end
     
-    protected
+    
     def puedo_edificar_casa(titulo)
       hay_espacio = titulo.numCasas < 8
       tengo_saldo = false
@@ -60,7 +61,9 @@ module ModeloQytetet
     end
     
     def to_s
-      return super + " Especulador: #{@fianza}"
+      return super + " \nFianza: #{@fianza}"
     end
+    
+    private:pagar_fianza
   end
 end

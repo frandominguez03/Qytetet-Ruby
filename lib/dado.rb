@@ -1,20 +1,23 @@
 # encoding: utf-8
-# author: Francisco Domínguez
-
 require "singleton"
-
+module ModeloQytetet
 class Dado
   include Singleton
-  
   def initialize
-    @valor = 0
+    @dado
+    @valor=0
   end
   
   attr_reader :valor
   
-  def tirar
-    aleatorio = Random.new
-    
-    @valor = aleatorio.rand(6)+1
+  def to_s
+    "Valor dado: #{@valor} \n "
   end
+  
+  def tirar
+    r = rand(1..6)
+    @valor=r
+    return r
+  end
+ end
 end

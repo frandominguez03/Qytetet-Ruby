@@ -1,10 +1,9 @@
 # encoding: utf-8
-# author: Francisco Domínguez.
 
 module ModeloQytetet
   class Casilla
     
-    def initialize(tipo, numCas, coste)
+    def initialize(numCas, tipo, coste)
       @numCasilla = numCas
       @tipo = tipo
       @coste = coste
@@ -17,11 +16,7 @@ module ModeloQytetet
     end   
     
     def to_s
-      if @tipo == TipoCasilla::CALLE
-        "numeroCasilla: #{@numCasilla} \n coste: #{@coste} \n tipo: #{@tipo} \n titulo: #{@titulo}"
-      else
         "numeroCasilla: #{@numCasilla} \n coste: #{@coste} \n tipo: #{@tipo}"
-      end
     end
   end
 end

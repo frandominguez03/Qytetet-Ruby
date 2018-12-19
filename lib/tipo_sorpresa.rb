@@ -1,6 +1,4 @@
 # encoding: utf-8
-# author: Francisco Domínguez
-
 module ModeloQytetet
   module TipoSorpresa
       PAGARCOBRAR = :Pagar_cobrar
